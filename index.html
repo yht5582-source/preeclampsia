@@ -370,9 +370,9 @@ button.mm-btn{width:100%;border:0;background:none;font-weight:650;font-size:15px
 </section>
 
 <section id="cases" hidden>
-  <h2>三個示範病例</h2>
+  <h2>九個示範病例</h2>
   <p class="sub">原創虛構病例：選擇後立即解析；每個病例依序推進，完成後可重練。</p>
-  <div class="seg"><button id="case0">A｜無蛋白尿的急症</button><button id="case1">B｜產後抽搐</button><button id="case2">C｜CKD 與預防</button></div>
+  <div class="seg"><button id="case0">A｜無蛋白尿的急症</button><button id="case1">B｜產後抽搐</button><button id="case2">C｜CKD 與預防</button><button id="case3">D｜血小板 120</button><button id="case4">E｜HELLP</button><button id="case5">F｜從穩定到急症</button><button id="case6">G｜雙胞胎與阿斯匹靈</button><button id="case7">H｜氣喘與降壓</button><button id="case8">I｜17 週高血壓</button></div>
   <div id="caseContent" class="card" tabindex="-1"></div>
 </section>
 
@@ -405,7 +405,7 @@ button.mm-btn{width:100%;border:0;background:none;font-weight:650;font-size:15px
   <div class="note">本頁是教學摘要，不是已驗證的診斷或處方系統。血壓確認方式、器官損傷門檻與期待療法條件需依所採指引、院內方案及母胎醫學團隊判斷；不將不同來源拼成單一「全球標準」。</div>
 </section>
 
-<footer>HDP 臨床互動學習 · v2.1 · 核對日期 2026 年 10 月 31 日 <button onclick="window.print()">列印學習內容</button> <a href="https://yht5582-source.github.io/PPH/">產後大出血單元 ↗</a></footer>
+<footer>HDP 臨床互動學習 · v2.2 · 核對日期 2026 年 10 月 31 日 <button onclick="window.print()">列印學習內容</button> <a href="https://yht5582-source.github.io/PPH/">產後大出血單元 ↗</a></footer>
 <section class="print-only" id="printAppendix"><h2>病例與考題完整講義</h2><div id="printContent"></div></section>
 </main>
 <script>
@@ -684,17 +684,31 @@ $('resetRisk').onclick=()=>{document.querySelectorAll('#prevent input').forEach(
 riskUI();
 
 /* cases */
+/*CASES-START*/
 const cases=[[
 ['32 週，尿蛋白陰性','初產婦 BP 166/108 mmHg，15 分鐘後複測仍 164/110，持續頭痛與閃光感。','下一步？',['等 24 小時尿蛋白','立即呼援並在 30–60 分鐘內處理持續嚴重血壓，評估器官異常與硫酸鎂','蛋白尿陰性可出院'],1,'持續嚴重血壓本身即須急症處置；新發頭痛與視覺症狀在 ACOG 為 severe feature，無蛋白尿不能排除子癲前症。[1–4]'],
 ['母體病況惡化','降壓後仍出現呼吸困難與肺水腫，胎心亦異常。','應如何規劃？',['一定等到 34 週','只用硫酸鎂取代降壓','穩定母體並及早分娩，不為類固醇延誤'],2,'肺水腫與胎兒狀態不安心是 ISSHP 任何孕週的分娩適應症；呼吸支持、降壓、抗抽搐與分娩準備協同進行。[2,4]']],[
 ['產後第 4 天','先前無高血壓，今天劇烈頭痛後全身抽搐，BP 158/104。','第一個原則？',['血壓未達 160/110，可排除子癲症','呼援、保護呼吸道，考慮子癲症並給硫酸鎂','只安排常規門診'],1,'產後可首次發病，且產後第 3–6 天血壓常最高；抽搐不需達嚴重血壓才危險。硫酸鎂為子癲症首選。[1,2]'],
 ['少尿與低反射','硫酸鎂輸注期間尿量下降、腱反射消失，呼吸變慢。','處置？',['繼續固定速率','追加負荷量','停止鎂、呼援及支持呼吸，評估鎂毒性'],2,'鎂經腎臟排除，少尿增加蓄積風險；立即評估毒性並依院內方案處理。[2]']],[
 ['孕 12 週，有 CKD','既往慢性高血壓與蛋白尿，正討論產前預防。','何者正確？',['評估低劑量阿斯匹靈適應症與禁忌','開始鎂輸注至分娩','所有指引都是同一劑量與停藥時間'],0,'CKD 與慢性高血壓皆為高風險因子。ACOG 81 mg/day 至分娩；NICE 75–150 mg/day 至分娩；ISSHP 睡前、36 週前停用。[1,2,5]'],
-['孕 29 週，蛋白尿增加','BP 148/94，原有蛋白尿增加，尚無其他資料。','是否可單憑此確診疊加型子癲前症？',['可以','不可以，需查新發器官異常及胎盤功能並比較基準值','CKD 不可能合併子癲前症'],1,'ISSHP：單純血壓上升或原有蛋白尿增加不足以診斷疊加型；應安排完整母胎評估（可加 PlGF），不能直接確診，也不能排除。[2]']]];
+['孕 29 週，蛋白尿增加','BP 148/94，原有蛋白尿增加，尚無其他資料。','是否可單憑此確診疊加型子癲前症？',['可以','不可以，需查新發器官異常及胎盤功能並比較基準值','CKD 不可能合併子癲前症'],1,'ISSHP：單純血壓上升或原有蛋白尿增加不足以診斷疊加型；應安排完整母胎評估（可加 PlGF），不能直接確診，也不能排除。[2]']],[
+['31 週，血小板 120','初產婦 BP 146/92，相隔 4 小時複測 148/94。無症狀，尿 PCR 陰性，血小板 120 ×10³/µL，肌酸酐 0.6 mg/dL，AST 28 IU/L。','兩套門檻如何判讀？',['ACOG 未達 <100，屬妊娠高血壓；ISSHP／NICE 達 <150，屬子癲前症','兩套都已符合子癲前症，因為血小板已低於實驗室常見的正常下限，不必再區分採用哪一套指引','兩套都只算妊娠高血壓，因為沒有蛋白尿就不能診斷子癲前症，需等尿蛋白轉陽'],0,'同一數值在不同指引結論不同，需標明採用的來源；沒有蛋白尿不能排除子癲前症。無論採哪一套都要持續母胎追蹤。[1,2,4]'],
+['33 週，血小板再降','兩週後 BP 148/94，仍無症狀。血小板 90，其餘檢驗正常，胎兒評估安心。','依 ACOG，此時如何看待？',['血壓未達 160/110，仍算無嚴重特徵，計畫 37+0 週分娩','血小板只影響 ISSHP 分類，ACOG 不把它列為 severe feature','已具嚴重特徵：評估硫酸鎂，期待療法僅限嚴格挑選的穩定個案'],2,'血小板 <100 是 ACOG severe feature，不必等血壓達嚴重範圍。<34 週僅在嚴格挑選的穩定個案、具母胎重症與新生兒資源的中心考慮期待療法，並給類固醇。[4]']],[
+['30 週，血壓只輕度升高','BP 142/88，嚴重持續上腹痛。LDH 720 IU/L，周邊血片有破碎紅血球，AST 210 IU/L，血小板 78 ×10³/µL。','下一步？',['血壓未達 160/110，可先給止痛藥並安排門診追蹤','符合 HELLP 型態，母胎重症團隊處置並規劃分娩','先收集 24 小時尿蛋白，確認是子癲前症後才開始處置'],1,'HELLP 可在血壓僅輕度升高時出現。溶血＋肝酵素 ≥2 倍上限＋血小板 <100 應升級處置，不等尿蛋白。[2,4]'],
+['血小板持續下降','4 小時後血小板 46 ×10³/µL，胎兒肺成熟類固醇的療程尚未完成。','如何規劃？',['母體穩定後規劃分娩，不為完成類固醇而延誤','完成類固醇療程後再評估，因為類固醇也能加速 HELLP 緩解','加大類固醇劑量治療 HELLP，待血小板回升後再討論是否分娩'],0,'血小板進行性下降或 <50 是 ISSHP 任何孕週的分娩適應症。ISSHP：不要為了加速 HELLP 緩解而給類固醇；類固醇用於胎兒肺成熟的適應症。[2]']],[
+['35 週，無嚴重特徵','BP 148/94，複測確認。PCR 0.5 mg/mg，無症狀，血小板與肝腎功能正常，胎兒評估安心。','分娩計畫？',['蛋白尿已達門檻就代表病情嚴重，應在 24–48 小時內安排剖腹產','只要確診子癲前症，不論孕週與母胎狀況，都應在當天開始引產','密切監測：ACOG 37+0 週分娩；NICE 無適應症則續監測'],2,'尿蛋白量多寡不等於嚴重程度，也不單獨決定分娩；子癲前症本身不等於必須剖腹。兩套在 <37 週無提早分娩適應症時都持續監測。[1,2,4]'],
+['36 週，血壓急升','BP 164/104，15 分鐘後仍 162/104，新發頭痛且藥物無效。胎兒評估安心。','此時的處置？',['降壓與硫酸鎂並行，母體穩定後分娩（ACOG）','先給止痛藥觀察頭痛，隔天未改善再重新評估是否需要住院','血壓降下來、頭痛緩解後即回到原計畫，門診追蹤到 37+0 週'],0,'持續嚴重血壓須 30–60 分鐘內治療。ACOG：34+0–36+6 週具嚴重特徵者母體穩定後分娩，並用硫酸鎂；ISSHP：蛋白尿＋嚴重高血壓亦為硫酸鎂適應症。[2–4]']],[
+['11 週，雙胞胎','29 歲第二胎，BMI 24。上一胎順利足月，距今 3 年，無慢性疾病。此次為雙胞胎妊娠。','依風險規則，是否建議低劑量阿斯匹靈？',['ACOG 符合（多胞胎屬高風險）；NICE 未達（僅 1 項中度）','兩套都符合，因為多胞胎在所有指引中都屬於高風險因子，不需要再另外計算其他因子','兩套都不符合，因為這位孕婦既沒有慢性疾病，也沒有子癲前症的病史'],0,'多胞胎在 ACOG 為高風險、在 NICE 為中度風險；NICE 需 ≥2 項中度。結論不同時請標明採用的指引。[1,5]'],
+['13 週，改採合併篩檢','團隊依 ISSHP 完成含子宮動脈 PI 與 PlGF 的多變項篩檢，結果為高風險。','ISSHP 的用藥方式？',['81 mg/day 於白天服用，不論篩檢結果如何都一路持續到分娩當天為止','等到 28 週再開始 150 mg，並持續服用到分娩當天為止','150 mg 睡前服用，最好 16 週前開始，36 週前停用'],2,'ISSHP：多變項篩檢後 150 mg/晚，最好 16 週前開始、36 週前停用。ACOG 81 mg/day 至分娩是另一套方案，兩者不要混用。[2,5]']],[
+['28 週，氣喘與嚴重血壓','BP 172/112，15 分鐘後仍 170/110。有氣喘，近一週曾使用支氣管擴張劑。檢驗結果尚未回報。','第一線降壓如何選？',['IV labetalol 是唯一首選，氣喘不影響藥物選擇，不需要考慮替代方案','IV hydralazine 或口服速效 nifedipine','舌下 nifedipine 比較快，但要等檢驗結果回報後才給'],1,'持續嚴重血壓應在 30–60 分鐘內給第一線藥物，不等檢驗結果。Labetalol 遇氣喘需避免／審慎；nifedipine 不舌下使用。[2,3]'],
+['血壓回落之後','BP 降至 150/98。孕前因慢性高血壓服用 lisinopril，至今未停。','維持降壓如何安排？',['繼續 lisinopril，既然孕前血壓控制穩定就不需要更動，只要加強居家血壓監測即可','改用 labetalol 就好，血壓目標是降到完全正常為止','停用 lisinopril，改 nifedipine 或 methyldopa'],2,'孕期避免 ACEI／ARB。氣喘者避開 labetalol 後，nifedipine 與 methyldopa 仍在 NICE 與 ISSHP 的選項內；目標 NICE ≤135/85、ISSHP dBP 85 mmHg。[1,2]']],[
+['17 週，血壓與蛋白尿','第一次產檢 BP 150/96，複測相同，尿蛋白達門檻。過去沒有就醫紀錄。','如何歸類？',['先視為慢性（既存）高血壓或其他原因，再找病因','已符合子癲前症，應直接依具嚴重特徵子癲前症的流程處置','妊娠高血壓，因為孕前沒有診斷就代表是懷孕後才新發的高血壓'],0,'高血壓在 20 週前發現，歸為慢性（既存）高血壓或其他原因。[2] 20 週前的子癲前症罕見，需考慮葡萄胎、抗磷脂症候群等。'],
+['確診慢性高血壓後','超音波無葡萄胎徵象，診斷為慢性高血壓。現在 17 週，尚未使用阿斯匹靈。','阿斯匹靈怎麼決定？',['已經過了 16 週，所有指引都不再建議開始使用阿斯匹靈，這次懷孕就不必再考慮了','高風險因子：依 ACOG（12–28 週）與 NICE 現在仍可開始','要等到 20 週確認沒有子癲前症之後，才決定是否開始使用'],1,'慢性高血壓在 ACOG 與 NICE 都是高風險因子。ACOG 12–28 週開始，最好 16 週前；它是預防用藥，不必等到發病。[1,5]']]];
+/*CASES-END*/
 let ci=0,cs=0;
 function renderCase(){
   const c=cases[ci][cs];
-  $('caseContent').innerHTML=`<span class="tag">病例 ${'ABC'[ci]} · ${cs+1}/${cases[ci].length}</span><h3 style="margin-top:12px">${c[0]}</h3><p>${c[1]}</p><b>${c[2]}</b><div class="choices">${c[3].map((a,i)=>`<button data-ca="${i}">${a}</button>`).join('')}</div><div id="caseFeedback" class="fb" role="status"></div>`;
+  $('caseContent').innerHTML=`<span class="tag">病例 ${'ABCDEFGHI'[ci]} · ${cs+1}/${cases[ci].length}</span><h3 style="margin-top:12px">${c[0]}</h3><p>${c[1]}</p><b>${c[2]}</b><div class="choices">${c[3].map((a,i)=>`<button data-ca="${i}">${a}</button>`).join('')}</div><div id="caseFeedback" class="fb" role="status"></div>`;
   document.querySelectorAll('[data-ca]').forEach(b=>b.onclick=()=>{
     const ok=+b.dataset.ca===c[4];
     document.querySelectorAll('[data-ca]').forEach(x=>{x.disabled=true;x.classList.toggle('correct',+x.dataset.ca===c[4]);x.classList.toggle('incorrect',x===b&&!ok)});
@@ -702,9 +716,9 @@ function renderCase(){
     fb.innerHTML=`<b>${ok?'正確':'請留意這個重點'}</b><p>${c[5]}</p><button class="primary" id="nextCase">${cs+1<cases[ci].length?'推進病程 →':'完成，重新練習'}</button>`;
     $('nextCase').onclick=()=>{cs=(cs+1)%cases[ci].length;renderCase();$('caseContent').focus({preventScroll:true})};
   });
-  [0,1,2].forEach(i=>{$('case'+i).classList.toggle('active',i===ci);$('case'+i).setAttribute('aria-pressed',String(i===ci))});
+  cases.forEach((_,i)=>{$('case'+i).classList.toggle('active',i===ci);$('case'+i).setAttribute('aria-pressed',String(i===ci))});
 }
-[0,1,2].forEach(i=>$('case'+i).onclick=()=>{ci=i;cs=0;renderCase()});
+cases.forEach((_,i)=>$('case'+i).onclick=()=>{ci=i;cs=0;renderCase()});
 renderCase();
 
 /* quiz */
@@ -761,7 +775,7 @@ $('mapClose').onclick=()=>{document.querySelectorAll('.mm-node').forEach(n=>setN
 window.addEventListener('resize',drawMap);
 
 /* print appendix */
-$('printContent').innerHTML=cases.map((steps,i)=>'<h3>病例 '+'ABC'[i]+'</h3>'+steps.map(c=>'<article><h4>'+c[0]+'</h4><p>'+c[1]+'</p><p>'+c[2]+'</p><p>建議選項：'+c[3][c[4]]+'</p><p>'+c[5]+'</p></article>').join('')).join('')+'<h3>全部考題與解析</h3>'+qs.map((q,i)=>'<article><h4>'+(i+1)+'. '+q[0]+'</h4><p>'+q[1].map((a,j)=>'ABC'[j]+'. '+a).join('／')+'</p><p>正解：'+'ABC'[q[2]]+'。'+q[3]+'</p></article>').join('');
+$('printContent').innerHTML=cases.map((steps,i)=>'<h3>病例 '+'ABCDEFGHI'[i]+'</h3>'+steps.map(c=>'<article><h4>'+c[0]+'</h4><p>'+c[1]+'</p><p>'+c[2]+'</p><p>建議選項：'+c[3][c[4]]+'</p><p>'+c[5]+'</p></article>').join('')).join('')+'<h3>全部考題與解析</h3>'+qs.map((q,i)=>'<article><h4>'+(i+1)+'. '+q[0]+'</h4><p>'+q[1].map((a,j)=>'ABC'[j]+'. '+a).join('／')+'</p><p>正解：'+'ABC'[q[2]]+'。'+q[3]+'</p></article>').join('');
 let printDetails=[];
 window.addEventListener('beforeprint',()=>{printDetails=[...document.querySelectorAll('details')].map(d=>[d,d.open]);printDetails.forEach(([d])=>d.open=true)});
 window.addEventListener('afterprint',()=>printDetails.forEach(([d,open])=>d.open=open));
