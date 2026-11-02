@@ -47,4 +47,21 @@ t('aspirin BMI 32 + nullip: ACOG only',()=>{const r=S({nullip:true,bmi:32});asse
 t('aspirin prior GH: NICE high, ACOG moderate',()=>{const r=S({prevGH:true});assert.equal(r.nice.eligible,true);assert.equal(r.acog.eligible,false);assert.equal(r.acog.mod.length,1)});
 t('aspirin interval + priorSGA count once for ACOG',()=>{const r=S({interval10:true,priorSGA:true});assert.equal(r.acog.mod.length,1);assert.equal(r.acog.eligible,false)});
 t('aspirin IVF + nullip: ACOG only',()=>{const r=S({ivf:true,nullip:true});assert.equal(r.acog.eligible,true);assert.equal(r.nice.eligible,false)});
+// mind map: restates the page, so every number must exist outside the MAP block and thresholds must match the engine
+const mapStart=src.indexOf('/*MAP-START*/'),mapEnd=src.indexOf('/*MAP-END*/');
+const MAP=new Function(src.slice(mapStart,mapEnd)+';return MAP')();
+const rest=src.slice(0,mapStart)+src.slice(mapEnd);
+const leaves=[...MAP.left,...MAP.right].flatMap(b=>b[1]);
+const has=(re,tag)=>leaves.some(([x,s])=>re.test(x)&&(!tag||s.startsWith(tag)));
+t('map shape',()=>{assert.ok(MAP.left.length>=5&&MAP.right.length>=5);[...MAP.left,...MAP.right].forEach(([b,l])=>{assert.ok(b&&l.length>=2,b);l.forEach(([x,s])=>assert.ok(x&&s,b))})});
+t('map leaves unique',()=>assert.equal(new Set(leaves.map(l=>l[0])).size,leaves.length));
+t('map source tags known',()=>leaves.forEach(([x,s])=>assert.match(s,/^(ACOG \[[345]\]|ISSHP \[2\]|NICE \[1\]|ISSHP／NICE \[1,2\]|共通 \[[\d,–]+\]|互動評估|本頁藥物表|本頁分娩單元)$/,x)));
+t('map numbers all appear in the page',()=>leaves.forEach(([x])=>(x.match(/\d+(?:\.\d+)?/g)||[]).forEach(d=>assert.ok(rest.includes(d),d+' in '+x))));
+t('map BP thresholds match engine',()=>{assert.ok(has(/≥140\/90/));assert.ok(has(/收縮壓 ≥160 或舒張壓 ≥110/));assert.equal(PE.bp(159,109).severe,false);assert.equal(PE.bp(160,100).severe,true);assert.equal(PE.bp(150,110).severe,true);assert.equal(PE.bp(139,89).high,false)});
+t('map platelet thresholds match engine',()=>{assert.ok(has(/血小板 <100/,'ACOG'));assert.ok(has(/血小板 <150/,'ISSHP'));const crit=p=>A({sbp:146,dbp:92,plt:p});assert.ok(crit(99).acog.criteria.some(c=>/血小板/.test(c)));assert.ok(!crit(100).acog.criteria.some(c=>/血小板/.test(c)));assert.ok(crit(149).intl.criteria.some(c=>/血小板/.test(c)));assert.ok(!crit(150).intl.criteria.some(c=>/血小板/.test(c)))});
+t('map creatinine thresholds match engine',()=>{assert.ok(has(/肌酸酐 >1\.1/,'ACOG'));assert.ok(has(/≈1\.0 mg\/dL/,'ISSHP'));const c=v=>A({sbp:146,dbp:92,cr:v});assert.ok(!c(1.1).acog.criteria.some(x=>/肌酸酐/.test(x)));assert.ok(c(1.11).acog.criteria.some(x=>/肌酸酐/.test(x)));assert.ok(!c(0.99).intl.criteria.some(x=>/肌酸酐/.test(x)));assert.ok(c(1.0).intl.criteria.some(x=>/肌酸酐/.test(x)))});
+t('map liver thresholds match engine',()=>{assert.ok(has(/≥2 倍正常上限/,'ACOG'));assert.ok(has(/>40 IU\/L/,'ISSHP'));const l=v=>A({sbp:146,dbp:92,lft:v});assert.ok(!l(79).acog.criteria.some(x=>/肝酵素/.test(x)));assert.ok(l(80).acog.criteria.some(x=>/肝酵素/.test(x)));assert.ok(!l(40).intl.criteria.some(x=>/AST/.test(x)));assert.ok(l(41).intl.criteria.some(x=>/AST/.test(x)))});
+t('map HELLP rule matches engine',()=>{assert.ok(has(/溶血＋肝酵素 ≥2 倍上限＋血小板 <100/));assert.equal(A({sbp:142,dbp:88,hemolysis:true,plt:99,lft:80}).hellp,true);assert.equal(A({sbp:142,dbp:88,hemolysis:true,plt:100,lft:80}).hellp,false)});
+t('map delivery timing matches engine',()=>{assert.ok(has(/37\+0 週分娩/,'ACOG'));assert.ok(has(/24–48 小時/,'NICE'));assert.ok(has(/34\+0–36\+6 週具嚴重特徵/,'ACOG'));assert.ok(A({sbp:148,dbp:94,prot:'pos',ga:38}).timing.some(s=>/24–48/.test(s)));assert.ok(A({sbp:150,dbp:95,neuro:true,ga:34}).timing.some(s=>/≥34 週具嚴重特徵/.test(s)));assert.ok(A({sbp:150,dbp:95,neuro:true,ga:33}).timing.some(s=>/<34 週具嚴重特徵/.test(s)))});
+t('map aspirin rules match engine',()=>{assert.ok(has(/>1 中度/,'ACOG'));assert.ok(has(/≥2 中度/,'NICE'));assert.ok(has(/多胞胎（ACOG 高、NICE 中度）/));assert.equal(S({age:35,nullip:true}).acog.eligible,true);assert.equal(S({age:39,nullip:true}).nice.eligible,false);assert.equal(S({age:40,nullip:true}).nice.eligible,true);assert.equal(S({bmi:30.1,nullip:true}).acog.eligible,true);assert.equal(S({bmi:30,nullip:true}).acog.eligible,false);assert.equal(S({bmi:35,nullip:true}).nice.eligible,true)});
 console.log(n+' tests passed'+(process.exitCode?' (with failures)':''));

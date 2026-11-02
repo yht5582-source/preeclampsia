@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="妊娠高血壓、子癲前症與子癲症互動教學：ACOG 與 ISSHP／NICE 診斷門檻並列評估、阿斯匹靈預防風險檢核、處置、分娩時機、病例及測驗。">
+<meta name="description" content="妊娠高血壓、子癲前症與子癲症互動教學：ACOG 與 ISSHP／NICE 診斷門檻並列評估、阿斯匹靈預防風險檢核、處置、分娩時機、病例、測驗及心智圖。">
 <meta name="theme-color" content="#4f3f8f">
 <title>妊娠高血壓・子癲前症・子癲症｜互動學習</title>
 <style>
@@ -80,6 +80,7 @@ fieldset{border:1px solid var(--line);border-radius:12px;padding:14px 16px 16px;
 legend{font-weight:700;font-size:14px;padding:0 6px;color:var(--brand)}
 .fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px 12px}
 label{display:block;font-size:14px;color:var(--muted)}
+label[hidden]{display:none}
 label .u{font-size:12px}
 input[type=number],select{font:inherit;font-size:16px;width:100%;padding:9px 10px;margin-top:3px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font-variant-numeric:tabular-nums}
 .checks{display:grid;gap:8px}
@@ -132,9 +133,33 @@ button.incorrect{border:2px solid var(--red);background:var(--red-soft);color:va
 .src p{margin-bottom:16px}
 footer{border-top:1px solid var(--line);margin-top:30px;padding:20px 0;font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:12px;align-items:center}
 .print-only{display:none}
+/* mind map */
+.map-bar{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between;margin-bottom:14px}
+.map-bar p{margin:0;flex:1 1 320px;font-size:14px}
+.map-bar .tools{margin:0}
+.mm{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 138px minmax(0,1fr);gap:0 46px;align-items:center}
+.mm svg.links{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.mm svg.links path{fill:none;stroke-width:1.6}
+.mm svg.links path.l{stroke:var(--brand2)}
+.mm svg.links path.r{stroke:var(--green)}
+.mm-root{position:relative;z-index:1;text-align:center;font-size:18px;font-weight:700;line-height:1.35;background:var(--brand);color:#fff;border-radius:12px;padding:16px 10px}
+.mm-side{position:relative;z-index:1;display:grid;gap:9px;min-width:0;align-self:start}
+.mm-title{font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--muted)}
+.mm-node{background:var(--surface);border:1.5px solid var(--line);border-radius:10px;min-width:0}
+.mm-side.left .mm-node{border-color:var(--brand2)}
+.mm-side.right .mm-node{border-color:var(--green)}
+button.mm-btn{width:100%;border:0;background:none;font-weight:650;font-size:15px;line-height:1.4;text-align:left;display:flex;gap:8px;justify-content:space-between;align-items:center;padding:8px 12px}
+.mm-btn i{font-style:normal;color:var(--muted);flex:none}
+.mm-node ul{margin:0;padding:0 12px 10px 28px;display:grid;gap:6px;font-size:14px;line-height:1.55}
+.mm-node ul[hidden]{display:none}
+.src-tag{display:inline-block;font-size:11px;font-weight:700;line-height:1.5;padding:0 6px;border-radius:99px;margin-left:5px;white-space:nowrap;background:var(--surface2);color:var(--muted)}
+.src-tag.acog{background:var(--amber-soft);color:var(--amber)}
+.src-tag.intl{background:var(--blue-soft);color:var(--blue)}
+@media (prefers-color-scheme:dark){.mm-root{color:#14141f}}
+@media (max-width:860px){.mm{grid-template-columns:minmax(0,1fr);gap:14px}.mm svg.links{display:none}.mm-root{order:-1}}
 @media (max-width:860px){.hero,.assess,.risk{grid-template-columns:1fr}.out{position:static}.hero{gap:18px}}
 @media (max-width:760px){.grid,.grid2{grid-template-columns:1fr}main{padding:18px 16px 32px}nav{margin:18px -16px 16px;padding:8px 16px}.card{padding:16px}.cmp{grid-template-columns:1fr}table{min-width:620px}.alarm .big{font-size:32px}}
-@media print{.topbar,nav,button,.skip,.tools{display:none!important}section[hidden]{display:block}body{background:#fff;color:#000}.card,.note{box-shadow:none;break-inside:avoid}.hero{display:block}.alarm{background:#fff;color:#000;border:2px solid #a3221b}.alarm small,.alarm .k{color:#000}section{break-before:page}#cases,#quiz{display:none!important}.print-only{display:block}.print-only article{break-inside:avoid}.scroll{overflow:visible}table{min-width:0!important;font-size:11px}details>*{display:block!important}.out{position:static}a{overflow-wrap:anywhere}}
+@media print{.topbar,nav,button,.skip,.tools{display:none!important}section[hidden]{display:block}body{background:#fff;color:#000}.card,.note{box-shadow:none;break-inside:avoid}.hero{display:block}.alarm{background:#fff;color:#000;border:2px solid #a3221b}.alarm small,.alarm .k{color:#000}section{break-before:page}#cases,#quiz{display:none!important}.print-only{display:block}.print-only article{break-inside:avoid}.mm{display:block}.mm svg.links{display:none}.mm-root{color:#000;background:#fff;border:2px solid #000;margin:12px 0}.mm-side{margin-bottom:12px}.mm-node{break-inside:avoid}button.mm-btn{display:flex!important;color:#000}.mm-btn i{display:none}.mm-node ul[hidden]{display:grid}.scroll{overflow:visible}table{min-width:0!important;font-size:11px}details>*{display:block!important}.out{position:static}a{overflow-wrap:anywhere}}
 </style>
 </head>
 <body>
@@ -164,6 +189,7 @@ footer{border-top:1px solid var(--line);margin-top:30px;padding:20px 0;font-size
   <button data-tab="birth"><b>05</b>分娩與產後</button>
   <button data-tab="cases"><b>06</b>病例練習</button>
   <button data-tab="quiz"><b>07</b>自我測驗</button>
+  <button data-tab="map"><b>08</b>心智圖</button>
   <button data-tab="sources"><b>§</b>指引與差異</button>
 </nav>
 
@@ -357,6 +383,16 @@ footer{border-top:1px solid var(--line);margin-top:30px;padding:20px 0;font-size
   <div id="quizContent" class="card" tabindex="-1"></div>
 </section>
 
+<section id="map" hidden>
+  <h2>心智圖：診斷與處置一頁看完</h2>
+  <p class="sub">整理自本頁各單元，未新增臨床內容。點分支展開；標籤為出處，<span class="src-tag acog">ACOG</span> 與 <span class="src-tag intl">ISSHP／NICE</span> 的門檻分列，不可混用。</p>
+  <div class="map-bar">
+    <p class="muted">引用編號對應「指引與差異」單元。列印時自動全部展開。</p>
+    <div class="tools"><button id="mapOpen">全部展開</button><button id="mapClose">全部收合</button></div>
+  </div>
+  <div class="mm" id="mm"></div>
+</section>
+
 <section id="sources" hidden>
   <h2>指引版本與使用界線</h2>
   <div class="card src">
@@ -369,7 +405,7 @@ footer{border-top:1px solid var(--line);margin-top:30px;padding:20px 0;font-size
   <div class="note">本頁是教學摘要，不是已驗證的診斷或處方系統。血壓確認方式、器官損傷門檻與期待療法條件需依所採指引、院內方案及母胎醫學團隊判斷；不將不同來源拼成單一「全球標準」。</div>
 </section>
 
-<footer>HDP 臨床互動學習 · v2.0 · 核對日期 2026 年 10 月 31 日 <button onclick="window.print()">列印學習內容</button> <a href="https://yht5582-source.github.io/PPH/">產後大出血單元 ↗</a></footer>
+<footer>HDP 臨床互動學習 · v2.1 · 核對日期 2026 年 10 月 31 日 <button onclick="window.print()">列印學習內容</button> <a href="https://yht5582-source.github.io/PPH/">產後大出血單元 ↗</a></footer>
 <section class="print-only" id="printAppendix"><h2>病例與考題完整講義</h2><div id="printContent"></div></section>
 </main>
 <script>
@@ -504,6 +540,99 @@ const PE=(()=>{
 if(typeof module!=='undefined')module.exports=PE;
 </script>
 <script>
+/*MAP-START*/
+const MAP={
+  left:[
+    ['血壓門檻',[
+      ['高血壓 ≥140/90：相隔 ≥4 小時兩次；嚴重範圍可短間隔確認','ACOG [4]'],
+      ['高血壓 ≥140/90：重複正確量測確認','ISSHP／NICE [1,2]'],
+      ['嚴重範圍：收縮壓 ≥160 或舒張壓 ≥110，任一即算','共通 [1–3]'],
+      ['嚴重血壓列為 severe feature','ACOG [4]'],
+      ['不以嚴重血壓區分「輕／重」子癲前症','ISSHP [2]'],
+      ['白袍：診間 ≥140/90，但居家／ABPM <135/85','ISSHP [2]']]],
+    ['分類',[
+      ['慢性高血壓：孕前已存在，或 <20 週發現','ISSHP [2]'],
+      ['妊娠高血壓：≥20 週新發，當下無子癲前症其他依據','共通 [2,4]'],
+      ['子癲前症：≥20 週新發高血壓＋蛋白尿或新發母體器官異常','共通 [1,2,4]'],
+      ['子癲前症另納入子宮胎盤功能異常','ISSHP／NICE [1,2]'],
+      ['子癲症：妊娠或產後新發強直陣攣抽搐，並排除其他原因','共通 [1,2]'],
+      ['疊加型：看新發的蛋白尿、器官或胎盤異常；單純血壓上升或原有蛋白尿增加不足以診斷','ISSHP [2]']]],
+    ['蛋白尿',[
+      ['24 小時 ≥300 mg 或 PCR ≥0.3 mg/mg；dipstick 2+ 僅於無其他方法時','ACOG [4]'],
+      ['PCR ≥30 mg/mmol、ACR ≥8 mg/mmol 或 24 小時 ≥0.3 g；dipstick ≥2+ 僅於無法確認時','ISSHP／NICE [1,2]'],
+      ['非必要條件：沒有蛋白尿不能排除子癲前症','共通 [1,2,4]'],
+      ['mg/mmol 與 mg/mg 不是同一數字，單位不能混用','共通 [2,4]'],
+      ['量的多寡不等於嚴重程度，也不單獨決定分娩','ISSHP [2]']]],
+    ['血液、腎、肝',[
+      ['血小板 <100 ×10³/µL','ACOG [4]'],
+      ['血小板 <150 ×10³/µL；或 DIC、溶血','ISSHP／NICE [1,2]'],
+      ['肌酸酐 >1.1 mg/dL，或較基準加倍','ACOG [4]'],
+      ['肌酸酐 ≥90 µmol/L（≈1.0 mg/dL）','ISSHP／NICE [1,2]'],
+      ['AST/ALT ≥2 倍正常上限，或嚴重持續右上腹／上腹痛','ACOG [4]'],
+      ['AST 或 ALT >40 IU/L（可伴或不伴腹痛）','ISSHP／NICE [1,2]']]],
+    ['神經與肺',[
+      ['新發且藥物無效的頭痛、視覺障礙','ACOG [4]'],
+      ['子癲症、意識改變、失明、中風、陣攣、嚴重頭痛、持續視野暗點','ISSHP／NICE [1,2]'],
+      ['肺水腫列為 severe feature','ACOG [4]'],
+      ['肺水腫列為任何孕週的分娩適應症','ISSHP [2]']]],
+    ['子宮胎盤功能',[
+      ['胎盤早期剝離、sFlt-1/PlGF 失衡、FGR、臍動脈都卜勒異常、胎死腹中','ISSHP／NICE [1,2]'],
+      ['不列入診斷條件；FGR 不再作為 severe feature','ACOG [4]']]],
+    ['HELLP',[
+      ['溶血、肝酵素上升、血小板低下，可在血壓僅輕度升高時出現','共通 [2,4]'],
+      ['本頁評估工具判定：溶血＋肝酵素 ≥2 倍上限＋血小板 <100','互動評估'],
+      ['不要為了加速緩解而給類固醇；類固醇用於胎兒肺成熟的適應症','ISSHP [2]']]]
+  ],
+  right:[
+    ['嚴重高血壓急症',[
+      ['15 分鐘內複測；持續 ≥15 分鐘即為急症','ACOG [3]'],
+      ['30–60 分鐘內給第一線藥物，這是時效上限，不是等待時間','ACOG [3]'],
+      ['IV labetalol、IV hydralazine、口服速效 nifedipine','ACOG [3]'],
+      ['另列口服 labetalol','ISSHP [2]'],
+      ['nifedipine 不舌下；labetalol 遇氣喘、心搏過慢或傳導阻滯需避免／審慎','本頁藥物表']]],
+    ['硫酸鎂適應症',[
+      ['子癲症：三套指引一致','共通 [1,2,4]'],
+      ['具嚴重特徵子癲前症','ACOG [4]'],
+      ['蛋白尿＋嚴重高血壓，或高血壓＋神經學症狀','ISSHP [2]'],
+      ['重度子癲前症於重症照護環境，尤其預計 24 小時內分娩','NICE [1]'],
+      ['抗抽搐用藥，不能取代降壓藥','共通 [1,2,4]']]],
+    ['硫酸鎂方案與毒性',[
+      ['4 g IV 於 5–15 分鐘負荷；續 1 g/h 共 24 小時','NICE [1]'],
+      ['子癲發作者自最後一次發作起 24 小時；再發追加 2–4 g IV','NICE [1]'],
+      ['監測呼吸、腱反射與尿量；少尿或腎功能異常須專科調整','NICE [1]'],
+      ['疑毒性：停止輸注、呼援並支持呼吸，依院內方案給 calcium gluconate','ISSHP [2]'],
+      ['重症肌無力屬禁忌，需事先辨識','本頁藥物表']]],
+    ['抽搐當下',[
+      ['保護病人、維持呼吸道與氧合；不強行壓制，不往口中放物品','共通 [1,2]'],
+      ['同步控制嚴重血壓、給硫酸鎂、檢查血糖，考慮其他神經病因','共通 [1,2]'],
+      ['穩定後規劃分娩，不在未復甦穩定時立刻剖腹','共通 [1,2]']]],
+    ['維持降壓',[
+      ['labetalol → nifedipine → methyldopa；目標 ≤135/85','NICE [1]'],
+      ['methyldopa、labetalol、nifedipine 皆第一線；目標 dBP 85','ISSHP [2]'],
+      ['孕期避免 ACEI／ARB','本頁藥物表']]],
+    ['阿斯匹靈預防',[
+      ['≥1 高風險或 >1 中度；81 mg/day，12–28 週開始（最好 16 週前）至分娩','ACOG [5]'],
+      ['≥1 高風險或 ≥2 中度；75–150 mg/day，自 12 週至分娩','NICE [1]'],
+      ['11–14 週合併篩檢；最好 16 週前、睡前服用、36 週前停用','ISSHP [2]'],
+      ['臨床＋血壓篩檢後 100–162 mg/d；多變項篩檢後 150 mg/晚','ISSHP [2]'],
+      ['常見結論差異：多胞胎（ACOG 高、NICE 中度）、年齡 35 vs 40、BMI 30 vs 35','互動評估']]],
+    ['分娩時機',[
+      ['無嚴重特徵：<37 週密切監測，37+0 週分娩','ACOG [4]'],
+      ['子癲前症 ≥37 週：24–48 小時內啟動分娩','NICE [1]'],
+      ['妊娠高血壓 BP <160/110：37 週前不計畫提早分娩','NICE [1]'],
+      ['34+0–36+6 週具嚴重特徵：母體穩定後分娩','ACOG [4]'],
+      ['34+0–36+6 週子癲前症：持續監測，除非有提早分娩適應症','NICE [1]'],
+      ['<34 週具嚴重特徵：僅嚴格挑選的穩定個案於有資源中心期待療法，給類固醇','ACOG [4]'],
+      ['任何孕週適應症：子癲症、肺水腫、血小板進行性下降或 <50、胎兒狀態不安心等','ISSHP [2]'],
+      ['子癲前症本身不等於必須剖腹；分娩方式依產科條件決定','本頁分娩單元']]],
+    ['產後與長期',[
+      ['血壓通常在第 3–6 天最高；產後可首次發病','共通 [1,2,4]'],
+      ['產前有高血壓者，產後第 3–7 天至少測一次','ISSHP [2]'],
+      ['6–8 週檢視病程；持續蛋白尿需腎臟評估','NICE [1]'],
+      ['追蹤高血壓、腎病與心血管風險，討論下次懷孕的預防','共通 [1,2,4]']]]
+  ]
+};
+/*MAP-END*/
 const $=id=>document.getElementById(id),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const tabs=[...document.querySelectorAll('[data-tab]')];
 function showTab(id,focus=false){
@@ -511,6 +640,7 @@ function showTab(id,focus=false){
   document.querySelectorAll('main>section:not(.print-only)').forEach(s=>{s.hidden=s.id!==id;s.tabIndex=-1});
   tabs.forEach(b=>{const on=b.dataset.tab===id;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on));b.setAttribute('aria-controls',b.dataset.tab);if(on&&focus)b.scrollIntoView({block:'nearest',inline:'center'})});
   if(focus){$(id).focus({preventScroll:true});const top=$('learning').getBoundingClientRect().top;if(top<0)$('learning').scrollIntoView()}
+  if(id==='map')requestAnimationFrame(drawMap);
 }
 tabs.forEach(b=>b.onclick=()=>{history.replaceState(null,'','#'+b.dataset.tab);showTab(b.dataset.tab,true)});
 showTab(location.hash.slice(1));
@@ -609,6 +739,26 @@ function renderQuiz(){
   });
 }
 renderQuiz();
+
+/* mind map */
+const srcClass=t=>/^ACOG/.test(t)?' acog':/^(ISSHP|NICE)/.test(t)?' intl':'';
+const mapSide=(list,side,title)=>`<div class="mm-side ${side}"><div class="mm-title">${title}</div>${list.map(([t,leaves])=>`<div class="mm-node" data-side="${side}"><button class="mm-btn" aria-expanded="false"><span>${esc(t)}</span><i aria-hidden="true">＋</i></button><ul hidden>${leaves.map(([x,src])=>`<li>${esc(x)}<span class="src-tag${srcClass(src)}">${esc(src)}</span></li>`).join('')}</ul></div>`).join('')}</div>`;
+$('mm').innerHTML=`<svg class="links" aria-hidden="true"></svg>${mapSide(MAP.left,'left','診斷')}<div class="mm-root">妊娠高血壓<br>子癲前症</div>${mapSide(MAP.right,'right','處置')}`;
+function drawMap(){
+  const mm=$('mm'),svg=mm.querySelector('svg.links');if(!mm.offsetParent||getComputedStyle(svg).display==='none')return;
+  const o=mm.getBoundingClientRect(),rt=mm.querySelector('.mm-root').getBoundingClientRect(),cy=rt.top+rt.height/2-o.top;
+  svg.setAttribute('viewBox',`0 0 ${o.width} ${o.height}`);
+  svg.innerHTML=[...mm.querySelectorAll('.mm-node')].map(n=>{
+    const b=n.querySelector('.mm-btn').getBoundingClientRect(),y=b.top+b.height/2-o.top,left=n.dataset.side==='left';
+    const x1=left?rt.left-o.left:rt.right-o.left,x2=left?b.right-o.left:b.left-o.left,mx=(x1+x2)/2;
+    return `<path class="${left?'l':'r'}" d="M${x1} ${cy} C${mx} ${cy} ${mx} ${y} ${x2} ${y}"/>`;
+  }).join('');
+}
+function setNode(n,open){n.querySelector('ul').hidden=!open;const b=n.querySelector('.mm-btn');b.setAttribute('aria-expanded',String(open));b.querySelector('i').textContent=open?'－':'＋'}
+$('mm').addEventListener('click',e=>{const b=e.target.closest('.mm-btn');if(!b)return;const n=b.closest('.mm-node');setNode(n,n.querySelector('ul').hidden);drawMap()});
+$('mapOpen').onclick=()=>{document.querySelectorAll('.mm-node').forEach(n=>setNode(n,true));drawMap()};
+$('mapClose').onclick=()=>{document.querySelectorAll('.mm-node').forEach(n=>setNode(n,false));drawMap()};
+window.addEventListener('resize',drawMap);
 
 /* print appendix */
 $('printContent').innerHTML=cases.map((steps,i)=>'<h3>病例 '+'ABC'[i]+'</h3>'+steps.map(c=>'<article><h4>'+c[0]+'</h4><p>'+c[1]+'</p><p>'+c[2]+'</p><p>建議選項：'+c[3][c[4]]+'</p><p>'+c[5]+'</p></article>').join('')).join('')+'<h3>全部考題與解析</h3>'+qs.map((q,i)=>'<article><h4>'+(i+1)+'. '+q[0]+'</h4><p>'+q[1].map((a,j)=>'ABC'[j]+'. '+a).join('／')+'</p><p>正解：'+'ABC'[q[2]]+'。'+q[3]+'</p></article>').join('');
